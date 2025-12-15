@@ -5,6 +5,7 @@
 """
 
 from calculator import Calculator, evaluate_expression
+from weather import get_daily_weather
 
 
 def print_help():
@@ -28,6 +29,10 @@ def print_help():
 ║                                                  ║
 ║  直接輸入表達式:                                 ║
 ║    例: 2 + 3 * 4    - 直接計算數學表達式        ║
+║                                                  ║
+║  天氣資訊:                                       ║
+║    weather [城市]   - 查詢天氣 (預設:台北)      ║
+║                       支援: 台北/台中/台南/高雄  ║
 ║                                                  ║
 ║  其他命令:                                       ║
 ║    history          - 顯示運算歷史              ║
@@ -101,6 +106,11 @@ def main():
             # 顯示上次結果
             elif command == 'last':
                 print(f"上次結果: {calc.get_last_result()}")
+
+            # 天氣查詢
+            elif command == 'weather':
+                city = parts[1] if len(parts) > 1 else '台北'
+                print(get_daily_weather(city))
 
             # 加法
             elif command == 'add':
